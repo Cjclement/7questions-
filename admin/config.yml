@@ -2,48 +2,109 @@ backend:
   name: git-gateway
   branch: main
 
-# Where uploaded images will be stored
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
 collections:
-  - name: "faith"
-    label: "Faith"
-    folder: "content/faith"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Body", name: "body", widget: "markdown"}
+  # ==========================================
+  # 1. HOMEPAGE & GLOBAL SETTINGS (File-based Collection)
+  # ==========================================
+  - name: "settings"
+    label: "Site & Homepage Settings"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "homepage"
+        label: "Homepage Content"
+        file: "content/settings/homepage.json"
+        fields:
+          - label: "Hero Title"
+            name: "hero_title"
+            widget: "string"
+            default: "7 QUESTIONS"
+          - label: "Hero Subtitle"
+            name: "hero_subtitle"
+            widget: "string"
+            default: "JUST ENOUGH"
+          - label: "Research Dropdown Points"
+            name: "research_points"
+            widget: "list"
+            summary: "{{fields.point}}"
+            field: {label: "Research Bullet Point", name: "point", widget: "string"}
+          
+          # Category Card descriptions shown on "!" click
+          - label: "Category Card Popups (! Tooltip)"
+            name: "category_descriptions"
+            widget: "object"
+            fields:
+              - {label: "Faith Description", name: "faith_info", widget: "string", default: "Content and questions related to work with GOD"}
+              - {label: "IT & Cybersecurity Description", name: "cyber_info", widget: "string", default: "Content related to IT, networking, and digital defense"}
+              - {label: "Episodes & Interviews Description", name: "interviews_info", widget: "string", default: "Insights from our guest speakers and interviews"}
+              - {label: "Others Description", name: "others_info", widget: "string", default: "Miscellaneous topics, finance, and general wisdom"}
 
-  - name: "cybersecurity"
-    label: "IT & Cybersecurity"
-    folder: "content/cybersecurity"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Body", name: "body", widget: "markdown"}
+          # Social links in the footer
+          - label: "Social Media Links"
+            name: "social_links"
+            widget: "object"
+            fields:
+              - {label: "LinkedIn URL", name: "linkedin_url", widget: "string", default: "https://linkedin.com"}
+              - {label: "Instagram URL", name: "instagram_url", widget: "string", default: "https://instagram.com"}
 
-  - name: "interviews"
-    label: "Episodes & Interviews"
-    folder: "content/interviews"
+  # ==========================================
+  # 2. BLOG POSTS (7-Questions Format)
+  # ==========================================
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "content/posts"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Guest Name", name: "guest", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Title"
+        name: "title"
+        widget: "string"
 
-  - name: "others"
-    label: "Others"
-    folder: "content/others"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - {label: "Faith", value: "faith"}
+          - {label: "IT & Cybersecurity", value: "cybersecurity"}
+          - {label: "Episodes & Interviews", value: "interviews"}
+          - {label: "Others", value: "others"}
+
+      - label: "Publish Date and Time"
+        name: "date"
+        widget: "datetime"
+        date_format: "MMMM D, YYYY"
+        time_format: "hh:mm A"
+        format: "YYYY-MM-DDTHH:mm:ssZ"
+
+      - label: "Subtitle / Summary"
+        name: "subtitle"
+        widget: "string"
+
+      - label: "Estimated Read Time"
+        name: "read_time"
+        widget: "string"
+        default: "4 min read"
+
+      - label: "Introduction Text"
+        name: "intro"
+        widget: "markdown"
+
+      # The 7 structured questions and answers
+      - label: "The 7 Questions"
+        name: "questions"
+        widget: "list"
+        summary: "Q{{index}}: {{fields.question}}"
+        min: 1
+        max: 7
+        fields:
+          - {label: "Question", name: "question", widget: "string"}
+          - {label: "Answer / Explanation", name: "answer", widget: "markdown"}
+
+      - label: "Conclusion / Closing Thoughts"
+        name: "conclusion"
+        widget: "markdown"
+        required: false
