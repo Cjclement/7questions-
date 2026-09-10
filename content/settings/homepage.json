@@ -1,0 +1,19 @@
+{
+  "hero_title": "7 QUESTIONS",
+  "hero_subtitle": "JUST ENOUGH",
+  "research_points": [
+    "It takes Asking Just 7 questions to be clear on an issue.",
+    "Asking closely 7 questions is enough to take a stand on an issue.",
+    "A closed mouth would restrict one to good opportunities."
+  ],
+  "category_descriptions": {
+    "faith_info": "Content and questions related to work with GOD",
+    "cyber_info": "Content related to IT, networking, and digital defense",
+    "interviews_info": "Insights from our guest speakers and interviews",
+    "others_info": "Miscellaneous topics, finance, and general wisdom"
+  },
+  "social_links": {
+    "linkedin_url": "https://linkedin.com",
+    "instagram_url": "https://instagram.com"
+  }
+}
