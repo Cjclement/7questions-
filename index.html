@@ -8,98 +8,7 @@
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Syncopate:wght@700&display=swap');
-        /* SLIDE-OUT NAVIGATION DRAWER */
-.nav-drawer {
-    position: fixed;
-    top: 0;
-    right: -320px;
-    width: 300px;
-    height: 100vh;
-    background: #ffffff;
-    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
-    z-index: 2000;
-    display: flex;
-    flex-direction: column;
-    padding: 30px 25px;
-    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
 
-.nav-drawer.open {
-    right: 0;
-}
-
-.drawer-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 1999;
-}
-
-.drawer-overlay.active {
-    display: block;
-}
-
-.drawer-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid var(--linkedin-blue);
-    padding-bottom: 15px;
-    margin-bottom: 25px;
-}
-
-.drawer-header h3 {
-    font-family: 'Syncopate', sans-serif;
-    font-size: 1rem;
-    color: var(--linkedin-blue);
-    letter-spacing: 1px;
-}
-
-.drawer-close {
-    background: none;
-    border: none;
-    font-size: 1.8rem;
-    cursor: pointer;
-    color: var(--text-dark);
-    line-height: 1;
-}
-
-.drawer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.drawer-links a {
-    text-decoration: none;
-    color: var(--text-dark);
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 10px 12px;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.drawer-links a:hover {
-    background: var(--gray-light);
-    color: var(--linkedin-blue);
-    padding-left: 18px;
-}
-
-.drawer-footer {
-    margin-top: auto;
-    border-top: 1px solid #eee;
-    padding-top: 20px;
-    font-size: 0.8rem;
-    color: #888;
-}
         :root {
             --linkedin-blue: #0A66C2;
             --bg-white: #FFFFFF;
@@ -144,7 +53,7 @@
             background: linear-gradient(90deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
             width: 0%;
             z-index: 9999;
-            animation: loadProgress 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+            animation: loadProgress 2s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
         }
 
         @keyframes loadProgress {
@@ -152,70 +61,68 @@
             40% { width: 60%; }
             100% { width: 100%; opacity: 0; display: none; }
         }
-/* HEADER BAR */
-header {
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between; /* Pushes child 1 to far left, child 2 to far right */
-    align-items: center;            /* Locks both on the exact same vertical center line */
-    height: 70px;
-    padding: 0 32px;
-    background: #ffffff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    position: relative;
-    z-index: 100;
-}
 
-    /* LEFT SIDE: SEARCH */
-    .header-left {
-        display: flex;
-        align-items: center;
-    }
-    
-    .search-bar input {
-        height: 40px;
-        width: 260px;
-        padding: 0 16px;
-        border: 1px solid #d1d5db;
-        border-radius: 20px;
-        outline: none;
-        font-size: 0.95rem;
-        font-family: inherit;
-        box-sizing: border-box;
-        transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    
-    .search-bar input:focus {
-        border-color: var(--linkedin-blue);
-        box-shadow: 0 0 0 3px rgba(10, 102, 194, 0.15);
-    }
-    
-    /* RIGHT SIDE: MENU */
-    .header-right {
-        display: flex;
-        align-items: center;
-    }
-    
-    .menu-icon {
-        font-size: 26px;
-        line-height: 1;
-        height: 40px;
-        width: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        color: var(--text-dark);
-        user-select: none;
-        transition: color 0.2s;
-    }
-    
-    .menu-icon:hover {
-        color: var(--linkedin-blue);
-    }
-               
+        /* HEADER: CLEAN HORIZONTAL ALIGNMENT */
+        header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            min-height: 70px;
+            padding: 0 40px;
+            background: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input {
+            height: 40px;
+            padding: 0 16px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+            width: 250px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+        }
+
+        .search-bar input:focus {
+            border-color: var(--linkedin-blue);
+            box-shadow: 0 0 8px rgba(10, 102, 194, 0.2);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-icon {
+            font-size: 26px;
+            line-height: 1;
+            height: 40px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-dark);
+            user-select: none;
+            transition: color 0.3s;
+        }
+
+        .menu-icon:hover {
+            color: var(--linkedin-blue);
+        }
+
         /* HERO & DROPDOWN */
         main {
             flex: 1;
@@ -448,12 +355,6 @@ header {
             opacity: 1;
         }
 
-        .empty-indicator {
-            font-size: 0.85rem;
-            color: #888;
-            font-style: italic;
-        }
-
         .arrow-bottom {
             align-self: flex-end;
             margin-top: 20px;
@@ -469,7 +370,100 @@ header {
             transform: translateX(5px);
         }
 
-        /* MODAL FOR VIEW ALL */
+        /* SLIDE-OUT NAVIGATION DRAWER */
+        .nav-drawer {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 300px;
+            height: 100vh;
+            background: #ffffff;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 25px;
+            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-drawer.open {
+            right: 0;
+        }
+
+        .drawer-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1999;
+        }
+
+        .drawer-overlay.active {
+            display: block;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--linkedin-blue);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .drawer-header h3 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1rem;
+            color: var(--linkedin-blue);
+            letter-spacing: 1px;
+        }
+
+        .drawer-close {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-dark);
+            line-height: 1;
+        }
+
+        .drawer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .drawer-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 10px 12px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .drawer-links a:hover {
+            background: var(--gray-light);
+            color: var(--linkedin-blue);
+            padding-left: 18px;
+        }
+
+        .drawer-footer {
+            margin-top: auto;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* VIEW ALL MODAL */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -618,36 +612,42 @@ header {
 
             <pattern id="doodle" x="0" y="0" width="280" height="280" patternUnits="userSpaceOnUse">
                 <g opacity="0.18">
+                    <!-- Row 1 Area -->
                     <use href="#cross" x="25" y="25" transform="rotate(15 25 25)"/>
                     <use href="#lock" x="80" y="35" transform="rotate(-15 80 35)"/>
                     <use href="#qm" x="140" y="25" transform="rotate(25 140 25)"/>
                     <use href="#code" x="195" y="45" transform="rotate(-10 195 45)"/>
                     <use href="#at" x="250" y="25" transform="rotate(10 250 25)"/>
                     
+                    <!-- Row 2 Area -->
                     <use href="#bin" x="40" y="85" transform="rotate(-20 40 85)"/>
                     <use href="#hash" x="100" y="90" transform="rotate(15 100 90)"/>
                     <use href="#book" x="160" y="85" transform="rotate(-25 160 85)"/>
                     <use href="#mic" x="220" y="95" transform="rotate(20 220 95)"/>
                     <use href="#slash" x="270" y="80" transform="rotate(-15 270 80)"/>
 
+                    <!-- Row 3 Area -->
                     <use href="#lock" x="30" y="145" transform="rotate(25 30 145)"/>
                     <use href="#qm" x="90" y="135" transform="rotate(-15 90 135)"/>
                     <use href="#code" x="150" y="155" transform="rotate(10 150 155)"/>
                     <use href="#at" x="210" y="140" transform="rotate(-20 210 140)"/>
                     <use href="#bin" x="270" y="145" transform="rotate(15 270 145)"/>
                     
+                    <!-- Row 4 Area -->
                     <use href="#hash" x="45" y="210" transform="rotate(-10 45 210)"/>
                     <use href="#book" x="110" y="200" transform="rotate(-25 110 200)"/>
                     <use href="#mic" x="170" y="215" transform="rotate(15 170 215)"/>
                     <use href="#slash" x="230" y="205" transform="rotate(-10 230 205)"/>
                     <use href="#cross" x="280" y="210" transform="rotate(20 280 210)"/>
 
+                    <!-- Row 5 Area -->
                     <use href="#qm" x="35" y="265" transform="rotate(10 35 265)"/>
                     <use href="#code" x="95" y="255" transform="rotate(-20 95 255)"/>
                     <use href="#at" x="155" y="270" transform="rotate(15 155 270)"/>
                     <use href="#bin" x="215" y="260" transform="rotate(-10 215 260)"/>
                     <use href="#hash" x="275" y="265" transform="rotate(25 275 265)"/>
 
+                    <!-- Filler dots -->
                     <use href="#bubble" x="15" y="55"/> <use href="#plus" x="55" y="115"/> <use href="#bubble" x="115" y="35"/>
                     <use href="#plus" x="165" y="115"/> <use href="#bubble" x="225" y="65"/> <use href="#plus" x="255" y="115"/>
                     <use href="#bubble" x="55" y="175"/> <use href="#plus" x="105" y="245"/> <use href="#bubble" x="175" y="225"/>
@@ -660,39 +660,39 @@ header {
     </svg>
 
     <!-- Loading Bar -->
-    <div id="loading-bar"></div
+    <div id="loading-bar"></div>
+
+    <!-- HORIZONTALLY ALIGNED HEADER -->
     <header>
-    <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search the blog...">
-    </div>
-    <!-- Clean hamburger menu button -->
-    <div class="menu-icon" onclick="toggleNavDrawer()" title="Menu">☰</div>
-</header>
+        <div class="header-left">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search the blog...">
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="menu-icon" onclick="toggleNavDrawer()" title="Menu">☰</div>
+        </div>
+    </header>
 
-<!-- BACKDROP OVERLAY -->
-<div class="drawer-overlay" id="drawerOverlay" onclick="toggleNavDrawer()"></div>
-
-<!-- SLIDE-OUT MENU DRAWER -->
-<nav class="nav-drawer" id="navDrawer">
-    <div class="drawer-header">
-        <h3>7 QUESTIONS</h3>
-        <button class="drawer-close" onclick="toggleNavDrawer()">&times;</button>
-    </div>
-    
-    <div class="drawer-links">
-        <a href="index.html"><span>🏠 Home</span></a>
-        <a href="#heroDropdown" onclick="toggleNavDrawer(); toggleDropdown();"><span>📖 Research Concept</span></a>
-        <a href="mailto:contact@yourdomain.com?subject=7%20Questions%20Inquiry"><span>✉️ Contact Us</span></a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener"><span>💼 LinkedIn</span> <span>↗</span></a>
-        <a href="https://instagram.com" target="_blank" rel="noopener"><span>📷 Instagram</span> <span>↗</span></a>
-    </div>
-
-    <div class="drawer-footer">
-        <p>© 2026 7 Questions Blog.</p>
-        <p style="margin-top: 4px;">Just enough clarity.</p>
-    </div>
-</nav>
-    
+    <!-- BACKDROP OVERLAY & SLIDE-OUT DRAWER -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="toggleNavDrawer()"></div>
+    <nav class="nav-drawer" id="navDrawer">
+        <div class="drawer-header">
+            <h3>7 QUESTIONS</h3>
+            <button class="drawer-close" onclick="toggleNavDrawer()">&times;</button>
+        </div>
+        <div class="drawer-links">
+            <a href="index.html"><span>🏠 Home</span></a>
+            <a href="#heroDropdown" onclick="toggleNavDrawer(); toggleDropdown();"><span>📖 Research Concept</span></a>
+            <a href="mailto:contact@yourdomain.com?subject=7%20Questions%20Inquiry"><span>✉️ Contact Us</span></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener"><span>💼 LinkedIn</span> <span>↗</span></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener"><span>📷 Instagram</span> <span>↗</span></a>
+        </div>
+        <div class="drawer-footer">
+            <p>© 2026 7 Questions Blog.</p>
+            <p style="margin-top: 4px;">Just enough clarity.</p>
+        </div>
+    </nav>
 
     <main>
         <section class="hero">
@@ -722,9 +722,11 @@ header {
                     <span class="info-icon" onclick="showAlert('Content and questions related to work with GOD')">!</span>
                 </div>
                 <div class="recent-posts" id="posts-faith">
-                    <span class="empty-indicator">Loading articles...</span>
+                    <a href="#">Does record...</a>
+                    <a href="#">What is Justification?</a>
+                    <a href="#">Purity</a>
                 </div>
-                <div class="arrow-bottom" onclick="openViewAllModal('Faith')" title="View all Faith posts">➔</div>
+                <div class="arrow-bottom" onclick="openViewAllModal('Faith')">➔</div>
             </div>
 
             <!-- IT & CYBERSECURITY -->
@@ -734,9 +736,11 @@ header {
                     <span class="info-icon" onclick="showAlert('Content related to IT, networking, and digital defense')">!</span>
                 </div>
                 <div class="recent-posts" id="posts-cybersecurity">
-                    <span class="empty-indicator">Loading articles...</span>
+                    <a href="post.html">Cybersecurity in Nigeria challenges trend and recommendations</a>
+                    <a href="#">Question before Cyberattack</a>
+                    <a href="#">What is network security?</a>
                 </div>
-                <div class="arrow-bottom" onclick="openViewAllModal('IT & Cybersecurity')" title="View all IT & Cybersecurity posts">➔</div>
+                <div class="arrow-bottom" onclick="openViewAllModal('IT & Cybersecurity')">➔</div>
             </div>
 
             <!-- EPISODES & INTERVIEWS -->
@@ -746,9 +750,10 @@ header {
                     <span class="info-icon" onclick="showAlert('Insights from our guest speakers and interviews')">!</span>
                 </div>
                 <div class="recent-posts" id="posts-interviews">
-                    <span class="empty-indicator">Loading articles...</span>
+                    <a href="#">7 questions with Adebola Peters</a>
+                    <a href="#">7 questions with Layo Micheal</a>
                 </div>
-                <div class="arrow-bottom" onclick="openViewAllModal('Episodes & Interviews')" title="View all Interviews">➔</div>
+                <div class="arrow-bottom" onclick="openViewAllModal('Episodes & Interviews')">➔</div>
             </div>
 
             <!-- OTHERS -->
@@ -758,9 +763,9 @@ header {
                     <span class="info-icon" onclick="showAlert('Miscellaneous topics, finance, and general wisdom')">!</span>
                 </div>
                 <div class="recent-posts" id="posts-others">
-                    <span class="empty-indicator">Loading articles...</span>
+                    <a href="#">Financial Wisdom</a>
                 </div>
-                <div class="arrow-bottom" onclick="openViewAllModal('Others')" title="View all Other posts">➔</div>
+                <div class="arrow-bottom" onclick="openViewAllModal('Others')">➔</div>
             </div>
 
         </section>
@@ -785,23 +790,22 @@ header {
     </footer>
 
     <script>
-        // Hero dropdown
         function toggleDropdown() {
             const dropdown = document.getElementById('heroDropdown');
             const btnSpan = document.querySelector('#dropdownBtn span');
             dropdown.classList.toggle('open');
             btnSpan.innerHTML = dropdown.classList.contains('open') ? '▲' : '▼';
         }
-        function toggleNavDrawer() {
-            const drawer = document.getElementById('navDrawer');
-            const overlay = document.getElementById('drawerOverlay');
-    
-            drawer.classList.toggle('open');
-            overlay.classList.toggle('active');
-}
 
         function showAlert(message) {
             alert(message);
+        }
+
+        function toggleNavDrawer() {
+            const drawer = document.getElementById('navDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+            drawer.classList.toggle('open');
+            overlay.classList.toggle('active');
         }
 
         // Auto-redirect login from Netlify Identity
@@ -822,7 +826,6 @@ header {
         const REPO_NAME = "7questions";
         const POSTS_API_URL = `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/content/posts`;
 
-        // Store categorized posts globally for "View All" modal
         const postsByCategory = {
             "Faith": [],
             "IT & Cybersecurity": [],
@@ -849,21 +852,16 @@ header {
         async function fetchAndRenderPosts() {
             try {
                 const res = await fetch(POSTS_API_URL);
-                if (!res.ok) throw new Error(`GitHub API returned status ${res.status}`);
+                if (!res.ok) return; // Keep the default template placeholders if empty or rate-limited
                 const files = await res.json();
 
-                // Clear default loading text
-                ["posts-faith", "posts-cybersecurity", "posts-interviews", "posts-others"].forEach(id => {
-                    const el = document.getElementById(id);
-                    if (el) el.innerHTML = "";
-                });
+                let foundValidPosts = false;
 
                 for (const file of files) {
                     if (file.name.endsWith(".md")) {
                         const contentRes = await fetch(file.download_url);
                         const rawText = await contentRes.text();
 
-                        // Parse frontmatter
                         const frontmatterMatch = rawText.match(/^---\s*([\s\S]*?)\s*---/);
                         let title = file.name.replace(/\.md$/, "");
                         let category = "Others";
@@ -881,41 +879,33 @@ header {
                             title: title,
                             fileName: file.name
                         });
+                        foundValidPosts = true;
                     }
                 }
 
-                // Render up to 3 recent posts per category card
-                Object.keys(postsByCategory).forEach(cat => {
-                    const containerId = getContainerId(cat);
-                    const container = document.getElementById(containerId);
-                    if (!container) return;
+                if (foundValidPosts) {
+                    Object.keys(postsByCategory).forEach(cat => {
+                        const containerId = getContainerId(cat);
+                        const container = document.getElementById(containerId);
+                        if (!container) return;
 
-                    const list = postsByCategory[cat];
-                    if (list.length === 0) {
-                        container.innerHTML = '<span class="empty-indicator">No articles published yet</span>';
-                    } else {
-                        // Display top 3
-                        list.slice(0, 3).forEach(post => {
-                            const link = document.createElement("a");
-                            link.href = `post.html?file=${encodeURIComponent(post.fileName)}`;
-                            link.textContent = post.title;
-                            container.appendChild(link);
-                        });
-                    }
-                });
-
+                        const list = postsByCategory[cat];
+                        if (list.length > 0) {
+                            container.innerHTML = "";
+                            list.slice(0, 3).forEach(post => {
+                                const link = document.createElement("a");
+                                link.href = `post.html?file=${encodeURIComponent(post.fileName)}`;
+                                link.textContent = post.title;
+                                container.appendChild(link);
+                            });
+                        }
+                    });
+                }
             } catch (err) {
-                console.error("Error loading posts from GitHub:", err);
-                ["posts-faith", "posts-cybersecurity", "posts-interviews", "posts-others"].forEach(id => {
-                    const el = document.getElementById(id);
-                    if (el && el.innerHTML.includes("Loading")) {
-                        el.innerHTML = '<span class="empty-indicator">No articles published yet</span>';
-                    }
-                });
+                console.error("Using existing static display:", err);
             }
         }
 
-        // View All Modal functions
         function openViewAllModal(category) {
             const modal = document.getElementById("viewAllModal");
             const modalTitle = document.getElementById("modalCategoryTitle");
@@ -927,7 +917,12 @@ header {
             modalList.innerHTML = "";
 
             if (posts.length === 0) {
-                modalList.innerHTML = `<p style="color:#777; font-style:italic;">No articles found in this category yet.</p>`;
+                const container = document.getElementById(getContainerId(catKey));
+                if (container) {
+                    modalList.innerHTML = container.innerHTML;
+                } else {
+                    modalList.innerHTML = `<p style="color:#777; font-style:italic;">No articles found.</p>`;
+                }
             } else {
                 posts.forEach(post => {
                     const a = document.createElement("a");
@@ -950,7 +945,6 @@ header {
             }
         }
 
-        // Live Search Filter
         document.getElementById("searchInput").addEventListener("input", function(e) {
             const query = e.target.value.toLowerCase().trim();
             const allLinks = document.querySelectorAll(".recent-posts a");
