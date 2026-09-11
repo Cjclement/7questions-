@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>7 Questions Blog</title>
-    <!-- Netlify Identity Widget for CMS Auth & Invites -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Syncopate:wght@700&display=swap');
 
@@ -62,37 +60,26 @@
             100% { width: 100%; opacity: 0; display: none; }
         }
 
-        /* HEADER: CLEAN HORIZONTAL ALIGNMENT */
+        /* HEADER: PROPERLY ALIGNED ON SAME ROW */
         header {
             display: flex;
-            flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
-            min-height: 70px;
-            padding: 0 40px;
+            padding: 15px 30px;
             background: var(--card-bg);
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: relative;
             z-index: 10;
         }
 
-        .header-left {
-            display: flex;
-            align-items: center;
-        }
-
         .search-bar input {
-            height: 40px;
-            padding: 0 16px;
+            padding: 10px 15px;
             border: 1px solid #ccc;
             border-radius: 20px;
             outline: none;
             width: 250px;
             transition: all 0.3s ease;
             font-family: inherit;
-            font-size: 0.95rem;
-            box-sizing: border-box;
         }
 
         .search-bar input:focus {
@@ -100,23 +87,14 @@
             box-shadow: 0 0 8px rgba(10, 102, 194, 0.2);
         }
 
-        .header-right {
-            display: flex;
-            align-items: center;
-        }
-
         .menu-icon {
-            font-size: 26px;
-            line-height: 1;
-            height: 40px;
-            width: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 28px;
             cursor: pointer;
             color: var(--text-dark);
-            user-select: none;
             transition: color 0.3s;
+            line-height: 1;
+            display: flex;
+            align-items: center;
         }
 
         .menu-icon:hover {
@@ -362,177 +340,11 @@
             color: #aaa;
             cursor: pointer;
             transition: all 0.3s ease;
-            user-select: none;
         }
 
         .category-card:hover .arrow-bottom {
             color: var(--linkedin-blue);
             transform: translateX(5px);
-        }
-
-        /* SLIDE-OUT NAVIGATION DRAWER */
-        .nav-drawer {
-            position: fixed;
-            top: 0;
-            right: -320px;
-            width: 300px;
-            height: 100vh;
-            background: #ffffff;
-            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-            padding: 30px 25px;
-            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .nav-drawer.open {
-            right: 0;
-        }
-
-        .drawer-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 1999;
-        }
-
-        .drawer-overlay.active {
-            display: block;
-        }
-
-        .drawer-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--linkedin-blue);
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-        }
-
-        .drawer-header h3 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 1rem;
-            color: var(--linkedin-blue);
-            letter-spacing: 1px;
-        }
-
-        .drawer-close {
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: var(--text-dark);
-            line-height: 1;
-        }
-
-        .drawer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .drawer-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 10px 12px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .drawer-links a:hover {
-            background: var(--gray-light);
-            color: var(--linkedin-blue);
-            padding-left: 18px;
-        }
-
-        .drawer-footer {
-            margin-top: auto;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
-            font-size: 0.8rem;
-            color: #888;
-        }
-
-        /* VIEW ALL MODAL */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal-box {
-            background: white;
-            border-radius: 12px;
-            max-width: 650px;
-            width: 100%;
-            max-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            padding: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--linkedin-blue);
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-        }
-
-        .modal-close {
-            font-size: 1.5rem;
-            cursor: pointer;
-            border: none;
-            background: transparent;
-            font-weight: bold;
-        }
-
-        .modal-list {
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .modal-list a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 600;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #eee;
-            transition: all 0.2s;
-            display: block;
-        }
-
-        .modal-list a:hover {
-            background: var(--gray-light);
-            border-color: var(--linkedin-blue);
-            color: var(--linkedin-blue);
         }
 
         /* FOOTER */
@@ -662,37 +474,12 @@
     <!-- Loading Bar -->
     <div id="loading-bar"></div>
 
-    <!-- HORIZONTALLY ALIGNED HEADER -->
     <header>
-        <div class="header-left">
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search the blog...">
-            </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search the blog...">
         </div>
-        <div class="header-right">
-            <div class="menu-icon" onclick="toggleNavDrawer()" title="Menu">☰</div>
-        </div>
+        <div class="menu-icon">☰</div>
     </header>
-
-    <!-- BACKDROP OVERLAY & SLIDE-OUT DRAWER -->
-    <div class="drawer-overlay" id="drawerOverlay" onclick="toggleNavDrawer()"></div>
-    <nav class="nav-drawer" id="navDrawer">
-        <div class="drawer-header">
-            <h3>7 QUESTIONS</h3>
-            <button class="drawer-close" onclick="toggleNavDrawer()">&times;</button>
-        </div>
-        <div class="drawer-links">
-            <a href="index.html"><span>🏠 Home</span></a>
-            <a href="#heroDropdown" onclick="toggleNavDrawer(); toggleDropdown();"><span>📖 Research Concept</span></a>
-            <a href="mailto:contact@yourdomain.com?subject=7%20Questions%20Inquiry"><span>✉️ Contact Us</span></a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener"><span>💼 LinkedIn</span> <span>↗</span></a>
-            <a href="https://instagram.com" target="_blank" rel="noopener"><span>📷 Instagram</span> <span>↗</span></a>
-        </div>
-        <div class="drawer-footer">
-            <p>© 2026 7 Questions Blog.</p>
-            <p style="margin-top: 4px;">Just enough clarity.</p>
-        </div>
-    </nav>
 
     <main>
         <section class="hero">
@@ -716,71 +503,60 @@
         <section class="categories-container">
             
             <!-- FAITH -->
-            <div class="category-card" data-category="Faith">
+            <div class="category-card">
                 <div class="card-header">
                     <h2>FAITH</h2>
                     <span class="info-icon" onclick="showAlert('Content and questions related to work with GOD')">!</span>
                 </div>
-                <div class="recent-posts" id="posts-faith">
+                <div class="recent-posts">
                     <a href="#">Does record...</a>
                     <a href="#">What is Justification?</a>
                     <a href="#">Purity</a>
                 </div>
-                <div class="arrow-bottom" onclick="openViewAllModal('Faith')">➔</div>
+                <div class="arrow-bottom">➔</div>
             </div>
 
             <!-- IT & CYBERSECURITY -->
-            <div class="category-card" data-category="IT & Cybersecurity">
+            <div class="category-card">
                 <div class="card-header">
                     <h2>IT & CYBERSECURITY</h2>
                     <span class="info-icon" onclick="showAlert('Content related to IT, networking, and digital defense')">!</span>
                 </div>
-                <div class="recent-posts" id="posts-cybersecurity">
+                <div class="recent-posts">
                     <a href="post.html">Cybersecurity in Nigeria challenges trend and recommendations</a>
                     <a href="#">Question before Cyberattack</a>
                     <a href="#">What is network security?</a>
                 </div>
-                <div class="arrow-bottom" onclick="openViewAllModal('IT & Cybersecurity')">➔</div>
+                <div class="arrow-bottom">➔</div>
             </div>
 
             <!-- EPISODES & INTERVIEWS -->
-            <div class="category-card" data-category="Episodes & Interviews">
+            <div class="category-card">
                 <div class="card-header">
                     <h2>Episodes & Interviews</h2>
                     <span class="info-icon" onclick="showAlert('Insights from our guest speakers and interviews')">!</span>
                 </div>
-                <div class="recent-posts" id="posts-interviews">
+                <div class="recent-posts">
                     <a href="#">7 questions with Adebola Peters</a>
                     <a href="#">7 questions with Layo Micheal</a>
                 </div>
-                <div class="arrow-bottom" onclick="openViewAllModal('Episodes & Interviews')">➔</div>
+                <div class="arrow-bottom">➔</div>
             </div>
 
             <!-- OTHERS -->
-            <div class="category-card" data-category="Others">
+            <div class="category-card">
                 <div class="card-header">
                     <h2>Others</h2>
                     <span class="info-icon" onclick="showAlert('Miscellaneous topics, finance, and general wisdom')">!</span>
                 </div>
-                <div class="recent-posts" id="posts-others">
+                <div class="recent-posts">
                     <a href="#">Financial Wisdom</a>
                 </div>
-                <div class="arrow-bottom" onclick="openViewAllModal('Others')">➔</div>
+                <div class="arrow-bottom">➔</div>
             </div>
 
         </section>
     </main>
-
-    <!-- VIEW ALL MODAL -->
-    <div class="modal-overlay" id="viewAllModal" onclick="closeModalOnOverlay(event)">
-        <div class="modal-box">
-            <div class="modal-header">
-                <h3 id="modalCategoryTitle">All Posts</h3>
-                <button class="modal-close" onclick="closeModal()">×</button>
-            </div>
-            <div class="modal-list" id="modalPostsList"></div>
-        </div>
-    </div>
 
     <footer>
         <div class="social-links">
@@ -793,171 +569,19 @@
         function toggleDropdown() {
             const dropdown = document.getElementById('heroDropdown');
             const btnSpan = document.querySelector('#dropdownBtn span');
+            
             dropdown.classList.toggle('open');
-            btnSpan.innerHTML = dropdown.classList.contains('open') ? '▲' : '▼';
+            
+            if (dropdown.classList.contains('open')) {
+                btnSpan.innerHTML = '▲';
+            } else {
+                btnSpan.innerHTML = '▼';
+            }
         }
 
         function showAlert(message) {
             alert(message);
         }
-
-        function toggleNavDrawer() {
-            const drawer = document.getElementById('navDrawer');
-            const overlay = document.getElementById('drawerOverlay');
-            drawer.classList.toggle('open');
-            overlay.classList.toggle('active');
-        }
-
-        // Auto-redirect login from Netlify Identity
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
-                if (!user) {
-                    window.netlifyIdentity.on("login", () => {
-                        document.location.href = "/admin/";
-                    });
-                }
-            });
-        }
-    </script>
-
-    <!-- DYNAMIC POST LOADER FROM GITHUB CONTENT/POSTS -->
-    <script>
-        const GITHUB_USERNAME = "cjclement";
-        const REPO_NAME = "7questions";
-        const POSTS_API_URL = `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/content/posts`;
-
-        const postsByCategory = {
-            "Faith": [],
-            "IT & Cybersecurity": [],
-            "Episodes & Interviews": [],
-            "Others": []
-        };
-
-        function getContainerId(category) {
-            const normalized = (category || "").toLowerCase();
-            if (normalized.includes("faith")) return "posts-faith";
-            if (normalized.includes("cyber") || normalized.includes("it")) return "posts-cybersecurity";
-            if (normalized.includes("episode") || normalized.includes("interview")) return "posts-interviews";
-            return "posts-others";
-        }
-
-        function getCategoryKey(category) {
-            const normalized = (category || "").toLowerCase();
-            if (normalized.includes("faith")) return "Faith";
-            if (normalized.includes("cyber") || normalized.includes("it")) return "IT & Cybersecurity";
-            if (normalized.includes("episode") || normalized.includes("interview")) return "Episodes & Interviews";
-            return "Others";
-        }
-
-        async function fetchAndRenderPosts() {
-            try {
-                const res = await fetch(POSTS_API_URL);
-                if (!res.ok) return; // Keep the default template placeholders if empty or rate-limited
-                const files = await res.json();
-
-                let foundValidPosts = false;
-
-                for (const file of files) {
-                    if (file.name.endsWith(".md")) {
-                        const contentRes = await fetch(file.download_url);
-                        const rawText = await contentRes.text();
-
-                        const frontmatterMatch = rawText.match(/^---\s*([\s\S]*?)\s*---/);
-                        let title = file.name.replace(/\.md$/, "");
-                        let category = "Others";
-
-                        if (frontmatterMatch) {
-                            const metaBlock = frontmatterMatch[1];
-                            const titleMatch = metaBlock.match(/title:\s*"?([^"\n]+)"?/);
-                            const categoryMatch = metaBlock.match(/category:\s*"?([^"\n]+)"?/);
-                            if (titleMatch) title = titleMatch[1].trim();
-                            if (categoryMatch) category = categoryMatch[1].trim();
-                        }
-
-                        const catKey = getCategoryKey(category);
-                        postsByCategory[catKey].push({
-                            title: title,
-                            fileName: file.name
-                        });
-                        foundValidPosts = true;
-                    }
-                }
-
-                if (foundValidPosts) {
-                    Object.keys(postsByCategory).forEach(cat => {
-                        const containerId = getContainerId(cat);
-                        const container = document.getElementById(containerId);
-                        if (!container) return;
-
-                        const list = postsByCategory[cat];
-                        if (list.length > 0) {
-                            container.innerHTML = "";
-                            list.slice(0, 3).forEach(post => {
-                                const link = document.createElement("a");
-                                link.href = `post.html?file=${encodeURIComponent(post.fileName)}`;
-                                link.textContent = post.title;
-                                container.appendChild(link);
-                            });
-                        }
-                    });
-                }
-            } catch (err) {
-                console.error("Using existing static display:", err);
-            }
-        }
-
-        function openViewAllModal(category) {
-            const modal = document.getElementById("viewAllModal");
-            const modalTitle = document.getElementById("modalCategoryTitle");
-            const modalList = document.getElementById("modalPostsList");
-            const catKey = getCategoryKey(category);
-            const posts = postsByCategory[catKey] || [];
-
-            modalTitle.textContent = `${catKey} — All Articles (${posts.length})`;
-            modalList.innerHTML = "";
-
-            if (posts.length === 0) {
-                const container = document.getElementById(getContainerId(catKey));
-                if (container) {
-                    modalList.innerHTML = container.innerHTML;
-                } else {
-                    modalList.innerHTML = `<p style="color:#777; font-style:italic;">No articles found.</p>`;
-                }
-            } else {
-                posts.forEach(post => {
-                    const a = document.createElement("a");
-                    a.href = `post.html?file=${encodeURIComponent(post.fileName)}`;
-                    a.textContent = post.title;
-                    modalList.appendChild(a);
-                });
-            }
-
-            modal.classList.add("active");
-        }
-
-        function closeModal() {
-            document.getElementById("viewAllModal").classList.remove("active");
-        }
-
-        function closeModalOnOverlay(e) {
-            if (e.target.id === "viewAllModal") {
-                closeModal();
-            }
-        }
-
-        document.getElementById("searchInput").addEventListener("input", function(e) {
-            const query = e.target.value.toLowerCase().trim();
-            const allLinks = document.querySelectorAll(".recent-posts a");
-            allLinks.forEach(link => {
-                if (link.textContent.toLowerCase().includes(query)) {
-                    link.style.display = "block";
-                } else {
-                    link.style.display = query ? "none" : "block";
-                }
-            });
-        });
-
-        document.addEventListener("DOMContentLoaded", fetchAndRenderPosts);
     </script>
 </body>
 </html>
