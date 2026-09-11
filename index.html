@@ -767,6 +767,13 @@
             dropdown.classList.toggle('open');
             btnSpan.innerHTML = dropdown.classList.contains('open') ? '▲' : '▼';
         }
+        function toggleNavDrawer() {
+            const drawer = document.getElementById('navDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+    
+            drawer.classList.toggle('open');
+            overlay.classList.toggle('active');
+}
 
         function showAlert(message) {
             alert(message);
