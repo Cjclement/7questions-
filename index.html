@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>7 Questions Blog</title>
+    <!-- Netlify Identity Widget for CMS Auth & Invites -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Syncopate:wght@700&display=swap');
 
@@ -51,7 +53,7 @@
             background: linear-gradient(90deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
             width: 0%;
             z-index: 9999;
-            animation: loadProgress 2s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+            animation: loadProgress 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
         }
 
         @keyframes loadProgress {
@@ -330,6 +332,12 @@
             opacity: 1;
         }
 
+        .empty-indicator {
+            font-size: 0.85rem;
+            color: #888;
+            font-style: italic;
+        }
+
         .arrow-bottom {
             align-self: flex-end;
             margin-top: 20px;
@@ -337,11 +345,84 @@
             color: #aaa;
             cursor: pointer;
             transition: all 0.3s ease;
+            user-select: none;
         }
 
         .category-card:hover .arrow-bottom {
             color: var(--linkedin-blue);
             transform: translateX(5px);
+        }
+
+        /* MODAL FOR VIEW ALL */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: white;
+            border-radius: 12px;
+            max-width: 650px;
+            width: 100%;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--linkedin-blue);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .modal-close {
+            font-size: 1.5rem;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            font-weight: bold;
+        }
+
+        .modal-list {
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .modal-list a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+            transition: all 0.2s;
+            display: block;
+        }
+
+        .modal-list a:hover {
+            background: var(--gray-light);
+            border-color: var(--linkedin-blue);
+            color: var(--linkedin-blue);
         }
 
         /* FOOTER */
@@ -421,42 +502,36 @@
 
             <pattern id="doodle" x="0" y="0" width="280" height="280" patternUnits="userSpaceOnUse">
                 <g opacity="0.18">
-                    <!-- Row 1 Area -->
                     <use href="#cross" x="25" y="25" transform="rotate(15 25 25)"/>
                     <use href="#lock" x="80" y="35" transform="rotate(-15 80 35)"/>
                     <use href="#qm" x="140" y="25" transform="rotate(25 140 25)"/>
                     <use href="#code" x="195" y="45" transform="rotate(-10 195 45)"/>
                     <use href="#at" x="250" y="25" transform="rotate(10 250 25)"/>
                     
-                    <!-- Row 2 Area -->
                     <use href="#bin" x="40" y="85" transform="rotate(-20 40 85)"/>
                     <use href="#hash" x="100" y="90" transform="rotate(15 100 90)"/>
                     <use href="#book" x="160" y="85" transform="rotate(-25 160 85)"/>
                     <use href="#mic" x="220" y="95" transform="rotate(20 220 95)"/>
                     <use href="#slash" x="270" y="80" transform="rotate(-15 270 80)"/>
 
-                    <!-- Row 3 Area -->
                     <use href="#lock" x="30" y="145" transform="rotate(25 30 145)"/>
                     <use href="#qm" x="90" y="135" transform="rotate(-15 90 135)"/>
                     <use href="#code" x="150" y="155" transform="rotate(10 150 155)"/>
                     <use href="#at" x="210" y="140" transform="rotate(-20 210 140)"/>
                     <use href="#bin" x="270" y="145" transform="rotate(15 270 145)"/>
                     
-                    <!-- Row 4 Area -->
                     <use href="#hash" x="45" y="210" transform="rotate(-10 45 210)"/>
                     <use href="#book" x="110" y="200" transform="rotate(-25 110 200)"/>
                     <use href="#mic" x="170" y="215" transform="rotate(15 170 215)"/>
                     <use href="#slash" x="230" y="205" transform="rotate(-10 230 205)"/>
                     <use href="#cross" x="280" y="210" transform="rotate(20 280 210)"/>
 
-                    <!-- Row 5 Area -->
                     <use href="#qm" x="35" y="265" transform="rotate(10 35 265)"/>
                     <use href="#code" x="95" y="255" transform="rotate(-20 95 255)"/>
                     <use href="#at" x="155" y="270" transform="rotate(15 155 270)"/>
                     <use href="#bin" x="215" y="260" transform="rotate(-10 215 260)"/>
                     <use href="#hash" x="275" y="265" transform="rotate(25 275 265)"/>
 
-                    <!-- Scattered non-filled elements -->
                     <use href="#bubble" x="15" y="55"/> <use href="#plus" x="55" y="115"/> <use href="#bubble" x="115" y="35"/>
                     <use href="#plus" x="165" y="115"/> <use href="#bubble" x="225" y="65"/> <use href="#plus" x="255" y="115"/>
                     <use href="#bubble" x="55" y="175"/> <use href="#plus" x="105" y="245"/> <use href="#bubble" x="175" y="225"/>
@@ -473,9 +548,9 @@
 
     <header>
         <div class="search-bar">
-            <input type="text" placeholder="Search the blog...">
+            <input type="text" id="searchInput" placeholder="Search the blog...">
         </div>
-        <div class="menu-icon">☰</div>
+        <div class="menu-icon" onclick="document.location.href='/admin/'">⚙️</div>
     </header>
 
     <main>
@@ -500,61 +575,66 @@
         <section class="categories-container">
             
             <!-- FAITH -->
-            <div class="category-card">
+            <div class="category-card" data-category="Faith">
                 <div class="card-header">
                     <h2>FAITH</h2>
                     <span class="info-icon" onclick="showAlert('Content and questions related to work with GOD')">!</span>
                 </div>
-                <div class="recent-posts">
-                    <a href="#">Does record...</a>
-                    <a href="#">What is Justification?</a>
-                    <a href="#">Purity</a>
+                <div class="recent-posts" id="posts-faith">
+                    <span class="empty-indicator">Loading articles...</span>
                 </div>
-                <div class="arrow-bottom">➔</div>
+                <div class="arrow-bottom" onclick="openViewAllModal('Faith')" title="View all Faith posts">➔</div>
             </div>
 
             <!-- IT & CYBERSECURITY -->
-            <div class="category-card">
+            <div class="category-card" data-category="IT & Cybersecurity">
                 <div class="card-header">
                     <h2>IT & CYBERSECURITY</h2>
                     <span class="info-icon" onclick="showAlert('Content related to IT, networking, and digital defense')">!</span>
                 </div>
-                <div class="recent-posts">
-                    <!-- Change this in index.html: -->
-                    <a href="post.html">Cybersecurity in Nigeria challenges trend and recommendations</a>
-                    <a href="#">Question before Cyberattack</a>
-                    <a href="#">What is network security?</a>
+                <div class="recent-posts" id="posts-cybersecurity">
+                    <span class="empty-indicator">Loading articles...</span>
                 </div>
-                <div class="arrow-bottom">➔</div>
+                <div class="arrow-bottom" onclick="openViewAllModal('IT & Cybersecurity')" title="View all IT & Cybersecurity posts">➔</div>
             </div>
 
             <!-- EPISODES & INTERVIEWS -->
-            <div class="category-card">
+            <div class="category-card" data-category="Episodes & Interviews">
                 <div class="card-header">
                     <h2>Episodes & Interviews</h2>
                     <span class="info-icon" onclick="showAlert('Insights from our guest speakers and interviews')">!</span>
                 </div>
-                <div class="recent-posts">
-                    <a href="#">7 questions with Adebola Peters</a>
-                    <a href="#">7 questions with Layo Micheal</a>
+                <div class="recent-posts" id="posts-interviews">
+                    <span class="empty-indicator">Loading articles...</span>
                 </div>
-                <div class="arrow-bottom">➔</div>
+                <div class="arrow-bottom" onclick="openViewAllModal('Episodes & Interviews')" title="View all Interviews">➔</div>
             </div>
 
             <!-- OTHERS -->
-            <div class="category-card">
+            <div class="category-card" data-category="Others">
                 <div class="card-header">
                     <h2>Others</h2>
                     <span class="info-icon" onclick="showAlert('Miscellaneous topics, finance, and general wisdom')">!</span>
                 </div>
-                <div class="recent-posts">
-                    <a href="#">Financial Wisdom</a>
+                <div class="recent-posts" id="posts-others">
+                    <span class="empty-indicator">Loading articles...</span>
                 </div>
-                <div class="arrow-bottom">➔</div>
+                <div class="arrow-bottom" onclick="openViewAllModal('Others')" title="View all Other posts">➔</div>
             </div>
 
         </section>
     </main>
+
+    <!-- VIEW ALL MODAL -->
+    <div class="modal-overlay" id="viewAllModal" onclick="closeModalOnOverlay(event)">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="modalCategoryTitle">All Posts</h3>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-list" id="modalPostsList"></div>
+        </div>
+    </div>
 
     <footer>
         <div class="social-links">
@@ -564,79 +644,178 @@
     </footer>
 
     <script>
+        // Hero dropdown
         function toggleDropdown() {
             const dropdown = document.getElementById('heroDropdown');
             const btnSpan = document.querySelector('#dropdownBtn span');
-            
             dropdown.classList.toggle('open');
-            
-            if (dropdown.classList.contains('open')) {
-                btnSpan.innerHTML = '▲';
-            } else {
-                btnSpan.innerHTML = '▼';
-            }
+            btnSpan.innerHTML = dropdown.classList.contains('open') ? '▲' : '▼';
         }
 
         function showAlert(message) {
             alert(message);
         }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script>
-  const GITHUB_USERNAME = "cjclement";
-  const REPO_NAME = "7questions";
-  const POSTS_API_URL = `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/content/posts`;
 
-  async function loadBlogPosts() {
-    const postContainer = document.querySelector("#posts-container"); // Make sure this matches your container ID/class
-    if (!postContainer) return;
-
-    try {
-      const response = await fetch(POSTS_API_URL);
-      if (!response.ok) throw new Error("Could not fetch posts list");
-      
-      const files = await response.json();
-      postContainer.innerHTML = ""; // Clear existing static dummy cards
-
-      for (const file of files) {
-        if (file.name.endsWith(".md")) {
-          const contentRes = await fetch(file.download_url);
-          const rawText = await contentRes.text();
-          
-          // Parse Frontmatter metadata
-          const frontmatterMatch = rawText.match(/^---\s*([\s\S]*?)\s*---/);
-          if (frontmatterMatch) {
-            const metaBlock = frontmatterMatch[1];
-            const titleMatch = metaBlock.match(/title:\s*"?([^"\n]+)"?/);
-            const categoryMatch = metaBlock.match(/category:\s*"?([^"\n]+)"?/);
-            const dateMatch = metaBlock.match(/date:\s*"?([^"\n]+)"?/);
-            const readTimeMatch = metaBlock.match(/read_time:\s*"?([^"\n]+)"?/);
-
-            const title = titleMatch ? titleMatch[1] : "Untitled";
-            const category = categoryMatch ? categoryMatch[1] : "General";
-            const date = dateMatch ? dateMatch[1] : "";
-            const readTime = readTimeMatch ? readTimeMatch[1] : "4 min read";
-
-            // Render matching card
-            const card = document.createElement("div");
-            card.className = "post-card";
-            card.innerHTML = `
-              <span class="badge ${category.toLowerCase()}">${category}</span>
-              <h3><a href="post.html?file=${encodeURIComponent(file.name)}">${title}</a></h3>
-              <div class="card-meta">
-                <span>${date}</span> • <span>${readTime}</span>
-              </div>
-            `;
-            postContainer.appendChild(card);
-          }
+        // Auto-redirect login from Netlify Identity
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
         }
-      }
-    } catch (err) {
-      console.error("Error loading blog posts:", err);
-    }
-  }
+    </script>
 
-  document.addEventListener("DOMContentLoaded", loadBlogPosts);
-</script>
+    <!-- DYNAMIC POST LOADER FROM GITHUB CONTENT/POSTS -->
+    <script>
+        const GITHUB_USERNAME = "cjclement";
+        const REPO_NAME = "7questions";
+        const POSTS_API_URL = `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/content/posts`;
+
+        // Store categorized posts globally for "View All" modal
+        const postsByCategory = {
+            "Faith": [],
+            "IT & Cybersecurity": [],
+            "Episodes & Interviews": [],
+            "Others": []
+        };
+
+        function getContainerId(category) {
+            const normalized = (category || "").toLowerCase();
+            if (normalized.includes("faith")) return "posts-faith";
+            if (normalized.includes("cyber") || normalized.includes("it")) return "posts-cybersecurity";
+            if (normalized.includes("episode") || normalized.includes("interview")) return "posts-interviews";
+            return "posts-others";
+        }
+
+        function getCategoryKey(category) {
+            const normalized = (category || "").toLowerCase();
+            if (normalized.includes("faith")) return "Faith";
+            if (normalized.includes("cyber") || normalized.includes("it")) return "IT & Cybersecurity";
+            if (normalized.includes("episode") || normalized.includes("interview")) return "Episodes & Interviews";
+            return "Others";
+        }
+
+        async function fetchAndRenderPosts() {
+            try {
+                const res = await fetch(POSTS_API_URL);
+                if (!res.ok) throw new Error(`GitHub API returned status ${res.status}`);
+                const files = await res.json();
+
+                // Clear default loading text
+                ["posts-faith", "posts-cybersecurity", "posts-interviews", "posts-others"].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.innerHTML = "";
+                });
+
+                for (const file of files) {
+                    if (file.name.endsWith(".md")) {
+                        const contentRes = await fetch(file.download_url);
+                        const rawText = await contentRes.text();
+
+                        // Parse frontmatter
+                        const frontmatterMatch = rawText.match(/^---\s*([\s\S]*?)\s*---/);
+                        let title = file.name.replace(/\.md$/, "");
+                        let category = "Others";
+
+                        if (frontmatterMatch) {
+                            const metaBlock = frontmatterMatch[1];
+                            const titleMatch = metaBlock.match(/title:\s*"?([^"\n]+)"?/);
+                            const categoryMatch = metaBlock.match(/category:\s*"?([^"\n]+)"?/);
+                            if (titleMatch) title = titleMatch[1].trim();
+                            if (categoryMatch) category = categoryMatch[1].trim();
+                        }
+
+                        const catKey = getCategoryKey(category);
+                        postsByCategory[catKey].push({
+                            title: title,
+                            fileName: file.name
+                        });
+                    }
+                }
+
+                // Render up to 3 recent posts per category card
+                Object.keys(postsByCategory).forEach(cat => {
+                    const containerId = getContainerId(cat);
+                    const container = document.getElementById(containerId);
+                    if (!container) return;
+
+                    const list = postsByCategory[cat];
+                    if (list.length === 0) {
+                        container.innerHTML = '<span class="empty-indicator">No articles published yet</span>';
+                    } else {
+                        // Display top 3
+                        list.slice(0, 3).forEach(post => {
+                            const link = document.createElement("a");
+                            link.href = `post.html?file=${encodeURIComponent(post.fileName)}`;
+                            link.textContent = post.title;
+                            container.appendChild(link);
+                        });
+                    }
+                });
+
+            } catch (err) {
+                console.error("Error loading posts from GitHub:", err);
+                ["posts-faith", "posts-cybersecurity", "posts-interviews", "posts-others"].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el && el.innerHTML.includes("Loading")) {
+                        el.innerHTML = '<span class="empty-indicator">No articles published yet</span>';
+                    }
+                });
+            }
+        }
+
+        // View All Modal functions
+        function openViewAllModal(category) {
+            const modal = document.getElementById("viewAllModal");
+            const modalTitle = document.getElementById("modalCategoryTitle");
+            const modalList = document.getElementById("modalPostsList");
+            const catKey = getCategoryKey(category);
+            const posts = postsByCategory[catKey] || [];
+
+            modalTitle.textContent = `${catKey} — All Articles (${posts.length})`;
+            modalList.innerHTML = "";
+
+            if (posts.length === 0) {
+                modalList.innerHTML = `<p style="color:#777; font-style:italic;">No articles found in this category yet.</p>`;
+            } else {
+                posts.forEach(post => {
+                    const a = document.createElement("a");
+                    a.href = `post.html?file=${encodeURIComponent(post.fileName)}`;
+                    a.textContent = post.title;
+                    modalList.appendChild(a);
+                });
+            }
+
+            modal.classList.add("active");
+        }
+
+        function closeModal() {
+            document.getElementById("viewAllModal").classList.remove("active");
+        }
+
+        function closeModalOnOverlay(e) {
+            if (e.target.id === "viewAllModal") {
+                closeModal();
+            }
+        }
+
+        // Live Search Filter
+        document.getElementById("searchInput").addEventListener("input", function(e) {
+            const query = e.target.value.toLowerCase().trim();
+            const allLinks = document.querySelectorAll(".recent-posts a");
+            allLinks.forEach(link => {
+                if (link.textContent.toLowerCase().includes(query)) {
+                    link.style.display = "block";
+                } else {
+                    link.style.display = query ? "none" : "block";
+                }
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", fetchAndRenderPosts);
+    </script>
 </body>
 </html>
