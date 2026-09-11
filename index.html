@@ -581,5 +581,62 @@
             alert(message);
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  const GITHUB_USERNAME = "cjclement";
+  const REPO_NAME = "7questions";
+  const POSTS_API_URL = `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/content/posts`;
+
+  async function loadBlogPosts() {
+    const postContainer = document.querySelector("#posts-container"); // Make sure this matches your container ID/class
+    if (!postContainer) return;
+
+    try {
+      const response = await fetch(POSTS_API_URL);
+      if (!response.ok) throw new Error("Could not fetch posts list");
+      
+      const files = await response.json();
+      postContainer.innerHTML = ""; // Clear existing static dummy cards
+
+      for (const file of files) {
+        if (file.name.endsWith(".md")) {
+          const contentRes = await fetch(file.download_url);
+          const rawText = await contentRes.text();
+          
+          // Parse Frontmatter metadata
+          const frontmatterMatch = rawText.match(/^---\s*([\s\S]*?)\s*---/);
+          if (frontmatterMatch) {
+            const metaBlock = frontmatterMatch[1];
+            const titleMatch = metaBlock.match(/title:\s*"?([^"\n]+)"?/);
+            const categoryMatch = metaBlock.match(/category:\s*"?([^"\n]+)"?/);
+            const dateMatch = metaBlock.match(/date:\s*"?([^"\n]+)"?/);
+            const readTimeMatch = metaBlock.match(/read_time:\s*"?([^"\n]+)"?/);
+
+            const title = titleMatch ? titleMatch[1] : "Untitled";
+            const category = categoryMatch ? categoryMatch[1] : "General";
+            const date = dateMatch ? dateMatch[1] : "";
+            const readTime = readTimeMatch ? readTimeMatch[1] : "4 min read";
+
+            // Render matching card
+            const card = document.createElement("div");
+            card.className = "post-card";
+            card.innerHTML = `
+              <span class="badge ${category.toLowerCase()}">${category}</span>
+              <h3><a href="post.html?file=${encodeURIComponent(file.name)}">${title}</a></h3>
+              <div class="card-meta">
+                <span>${date}</span> • <span>${readTime}</span>
+              </div>
+            `;
+            postContainer.appendChild(card);
+          }
+        }
+      }
+    } catch (err) {
+      console.error("Error loading blog posts:", err);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", loadBlogPosts);
+</script>
 </body>
 </html>
