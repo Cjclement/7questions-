@@ -7,7 +7,7 @@ public_folder: "/assets/uploads"
 
 collections:
   # ==========================================
-  # 1. HOMEPAGE & GLOBAL SETTINGS (File-based Collection)
+  # 1. HOMEPAGE & GLOBAL SETTINGS
   # ==========================================
   - name: "settings"
     label: "Site & Homepage Settings"
@@ -31,25 +31,23 @@ collections:
             name: "research_points"
             widget: "list"
             summary: "{{fields.point}}"
-            field: {label: "Research Bullet Point", name: "point", widget: "string"}
-          
-          # Category Card descriptions shown on "!" click
+            field: { label: "Research Bullet Point", name: "point", widget: "string" }
+
           - label: "Category Card Popups (! Tooltip)"
             name: "category_descriptions"
             widget: "object"
             fields:
-              - {label: "Faith Description", name: "faith_info", widget: "string", default: "Content and questions related to work with GOD"}
-              - {label: "IT & Cybersecurity Description", name: "cyber_info", widget: "string", default: "Content related to IT, networking, and digital defense"}
-              - {label: "Episodes & Interviews Description", name: "interviews_info", widget: "string", default: "Insights from our guest speakers and interviews"}
-              - {label: "Others Description", name: "others_info", widget: "string", default: "Miscellaneous topics, finance, and general wisdom"}
+              - { label: "Faith Description", name: "faith_info", widget: "string", default: "Content and questions related to work with GOD" }
+              - { label: "IT & Cybersecurity Description", name: "cyber_info", widget: "string", default: "Content related to IT, networking, and digital defense" }
+              - { label: "Episodes & Interviews Description", name: "interviews_info", widget: "string", default: "Insights from our guest speakers and interviews" }
+              - { label: "Others Description", name: "others_info", widget: "string", default: "Miscellaneous topics, finance, and general wisdom" }
 
-          # Social links in the footer
           - label: "Social Media Links"
             name: "social_links"
             widget: "object"
             fields:
-              - {label: "LinkedIn URL", name: "linkedin_url", widget: "string", default: "https://linkedin.com"}
-              - {label: "Instagram URL", name: "instagram_url", widget: "string", default: "https://instagram.com"}
+              - { label: "LinkedIn URL", name: "linkedin_url", widget: "string", default: "https://linkedin.com" }
+              - { label: "Instagram URL", name: "instagram_url", widget: "string", default: "https://instagram.com" }
 
   # ==========================================
   # 2. BLOG POSTS (7-Questions Format)
@@ -68,10 +66,10 @@ collections:
         name: "category"
         widget: "select"
         options:
-          - {label: "Faith", value: "faith"}
-          - {label: "IT & Cybersecurity", value: "cybersecurity"}
-          - {label: "Episodes & Interviews", value: "interviews"}
-          - {label: "Others", value: "others"}
+          - { label: "Faith", value: "faith" }
+          - { label: "IT & Cybersecurity", value: "cybersecurity" }
+          - { label: "Episodes & Interviews", value: "interviews" }
+          - { label: "Others", value: "others" }
 
       - label: "Publish Date and Time"
         name: "date"
@@ -93,7 +91,6 @@ collections:
         name: "intro"
         widget: "markdown"
 
-      # The 7 structured questions and answers
       - label: "The 7 Questions"
         name: "questions"
         widget: "list"
@@ -101,8 +98,8 @@ collections:
         min: 1
         max: 7
         fields:
-          - {label: "Question", name: "question", widget: "string"}
-          - {label: "Answer / Explanation", name: "answer", widget: "markdown"}
+          - { label: "Question", name: "question", widget: "string" }
+          - { label: "Answer / Explanation", name: "answer", widget: "markdown" }
 
       - label: "Conclusion / Closing Thoughts"
         name: "conclusion"
