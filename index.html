@@ -20,7 +20,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
@@ -28,17 +28,19 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            background-color: var(--gray-light); 
+            /* CHANGE 1: Remove solid background so the SVG pattern shows through */
+            background-color: transparent; 
         }
-
-        /* GUARANTEED VISIBLE, BUG-FREE DOODLE LAYER */
+        
+        /* GUARANTEED VISIBLE DOODLE LAYER */
         .doodle-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -1;
+            /* CHANGE 2: Set z-index to 0 so it floats above the HTML root */
+            z-index: 0; 
             pointer-events: none;
         }
 
@@ -400,7 +402,7 @@
 <body>
 
     <!-- INLINE SVG DOODLE BACKGROUND -->
-    <svg class="doodle-bg" xmlns="http://www.w3.org/2000/svg">
+    <svg class="doodle-bg" width="100vw" height="100vh" xmlns="http://www.w3.org/2000/svg">
         <defs>
             <g id="cross"><path fill="none" stroke="#0A66C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M0,-12v24 M-8,-4h16"/></g>
             <g id="lock">
@@ -468,7 +470,7 @@
             </pattern>
         </defs>
         
-        <rect width="100%" height="100%" fill="url(#doodle)" />
+        <rect width="100vw" height="100vh" fill="url(#doodle)" />
     </svg>
 
     <!-- Loading Bar -->
